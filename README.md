@@ -77,3 +77,5 @@ html, body, #___gatsby, #___gatsby > div {
 
 And the `Page` container harbouring the left and right parts of the
 dashboard was also set to `height: 100%`.
+
+![screenshot](assets/full-height-dashboard-flexbox-layout.png "Screenshot of the desired layout")
