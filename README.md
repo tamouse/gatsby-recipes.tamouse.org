@@ -54,3 +54,26 @@ the following packages have been added:
 * [gatsby-transformer-sharp](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-sharp)
 * [styled-components](https://github.com/styled-components/styled-components)
 * [typography-theme-bootstrap](https://github.com/KyleAMathews/typography.js/tree/master/packages/typography-theme-bootstrap)
+
+
+## Learning Log
+
+### 2017-11-21 07:27
+
+Figuring out how to make a full-height, side-by-side layout (typical
+dashboard style) using react took a bit of poking and
+prodding. Essentially, all the divs down to the flex horizontal part
+need to be set at `height: 100%`. The simplest way I got there was
+to create an `index.css` file next to the `src/layouts/index.js`
+file with the following content:
+
+```css
+html, body, #___gatsby, #___gatsby > div {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+```
+
+And the `Page` container harbouring the left and right parts of the
+dashboard was also set to `height: 100%`.
