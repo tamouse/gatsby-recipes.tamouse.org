@@ -2,7 +2,37 @@ import React from "react"
 import "./index.css"
 import styled from "styled-components"
 import Link from 'gatsby-link'
-import RecipeCategories from '../components/RecipeCategories'
+import RecipeFragment from "../components/recipe_fragment"
+
+export default ({ data, children }) => {
+    return (
+    <Page>
+      <Sidebar>
+        <SidebarTitle>Recipes</SidebarTitle>
+        <RecipeFragment categories={data.allFile.edges} linkColor="PapayaWhip"/>
+        <SidebarSiteNav>
+          <h3>Site Navigation</h3>
+          <ul>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/about">About</NavLink></li>
+            <li><NavLink to="/contact">Contact</NavLink></li>
+          </ul>
+        </SidebarSiteNav>
+      </Sidebar>
+      <Content>
+        <ContentTitle>Contents</ContentTitle>
+        {children()}
+      </Content>
+    </Page>
+  )
+}
+
+export const query = graphql`
+  query NavRecipeCategories{
+    ...RecipeFragment
+  }
+
+`
 
 const NavLink = styled(Link)`
   color: Papayawhip;
@@ -17,7 +47,9 @@ const Page = styled.div`
 const PageSplit = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: flex-start;
+  height: 100%;
+  overflow-y: scroll;
 `
 const Sidebar = styled(PageSplit)`
   flex-grow: 1;
@@ -45,24 +77,3 @@ const Content = styled(PageSplit)`
 const ContentTitle = styled.h1`
   color: PaleVioletRed;
 `
-
-export default ({ children }) => (
-  <Page>
-    <Sidebar>
-      <SidebarTitle>Recipes</SidebarTitle>
-      <RecipeCategories/>
-      <SidebarSiteNav>
-        <h3>Site Navigation</h3>
-        <ul>
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/about">About</NavLink></li>
-          <li><NavLink to="/contact">Contact</NavLink></li>
-        </ul>
-      </SidebarSiteNav>
-    </Sidebar>
-    <Content>
-      <ContentTitle>Contents</ContentTitle>
-      {children()}
-    </Content>
-  </Page>
-)

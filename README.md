@@ -58,6 +58,24 @@ the following packages have been added:
 
 ## Learning Log
 
+### 2017-11-29 00:37
+
+Using the `gatsby-source-filesystem` plugin, figured out how to filter to just grabbing the recipe categories
+under `src/pages/recipes/` by using the `allFile(filter: ... )` query.
+
+I was trying to set it up in a component, but the examples use fragments, and I'm not quite up on those.
+Instead I'm repeating the query for the layout sidebar and the home page.
+
+Documentation on this is really non-existent for Gatsby, the author, Kyle Matthews directed me to a search on fragment
+in the repo: <https://github.com/gatsbyjs/gatsby/search?utf8=%E2%9C%93&q=fragment&type=>. This doesn't quite provide
+me with enough information yet, but eventually.
+
+#### 02:32
+
+After hacking around, I arrived at a very workable solution. The fragment is built upon the Root query, so I can
+use the filter option in the allFile fragment in `src/components/recipe_fragment.js`. Pretty cool. The component is being
+used for both the front page and the sidebar nav.
+
 ### 2017-11-21 07:27
 
 Figuring out how to make a full-height, side-by-side layout (typical
