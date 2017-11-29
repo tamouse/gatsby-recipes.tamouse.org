@@ -76,6 +76,8 @@ After hacking around, I arrived at a very workable solution. The fragment is bui
 use the filter option in the allFile fragment in `src/components/recipe_fragment.js`. Pretty cool. The component is being
 used for both the front page and the sidebar nav.
 
+![screenshot using recipe category fragment](assets/after-using-recipe-categories-fragment.jpg)
+
 ### 2017-11-21 07:27
 
 Figuring out how to make a full-height, side-by-side layout (typical
