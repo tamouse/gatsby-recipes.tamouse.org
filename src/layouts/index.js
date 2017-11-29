@@ -1,6 +1,14 @@
 import React from "react"
 import "./index.css"
 import styled from "styled-components"
+import Link from 'gatsby-link'
+import RecipeCategories from '../components/RecipeCategories'
+
+const NavLink = styled(Link)`
+  color: Papayawhip;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+`
 
 const Page = styled.div`
   height: 100%;
@@ -11,7 +19,7 @@ const PageSplit = styled.div`
   flex-direction: column;
   justify-content: top;
 `
-const Dashboard = styled(PageSplit)`
+const Sidebar = styled(PageSplit)`
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: auto;
@@ -19,8 +27,12 @@ const Dashboard = styled(PageSplit)`
   color: PapayaWhip;
   padding: 1em;
 `
-const DashboardTitle = styled.h1`
+const SidebarTitle = styled.h1`
   color: MintCream;
+`
+const SidebarSiteNav = styled.footer`
+  bottom: 0;
+  padding-bottom: 20px;
 `
 const Content = styled(PageSplit)`
   flex-grow: 5;
@@ -36,9 +48,18 @@ const ContentTitle = styled.h1`
 
 export default ({ children }) => (
   <Page>
-    <Dashboard>
-      <DashboardTitle>Recipes</DashboardTitle>
-    </Dashboard>
+    <Sidebar>
+      <SidebarTitle>Recipes</SidebarTitle>
+      <RecipeCategories/>
+      <SidebarSiteNav>
+        <h3>Site Navigation</h3>
+        <ul>
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink to="/contact">Contact</NavLink></li>
+        </ul>
+      </SidebarSiteNav>
+    </Sidebar>
     <Content>
       <ContentTitle>Contents</ContentTitle>
       {children()}
