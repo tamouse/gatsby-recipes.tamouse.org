@@ -2,7 +2,6 @@ import React from "react"
 import "./index.css"
 import styled from "styled-components"
 import Link from 'gatsby-link'
-import RecipeCategories from '../components/RecipeCategories'
 
 const NavLink = styled(Link)`
   color: Papayawhip;
@@ -50,7 +49,6 @@ export default ({ children }) => (
   <Page>
     <Sidebar>
       <SidebarTitle>Recipes</SidebarTitle>
-      <RecipeCategories/>
       <SidebarSiteNav>
         <h3>Site Navigation</h3>
         <ul>
