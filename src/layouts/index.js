@@ -2,22 +2,14 @@ import React from "react"
 import "./index.css"
 import styled from "styled-components"
 import Link from 'gatsby-link'
-import {linkLabel, linkPath} from '../utils'
-
+import RecipeFragment from "../components/recipe_fragment"
 
 export default ({ data, children }) => {
-  console.log("from layout/index default", data.allFile.edges)
-  return (
+    return (
     <Page>
       <Sidebar>
         <SidebarTitle>Recipes</SidebarTitle>
-        <CategoriesNav>
-          {data.allFile.edges.map((item, index) => <CategoryItem key={index}>
-            <NavLink to={linkPath(item.node.relativePath)}>
-              {linkLabel(item.node.relativePath)}
-            </NavLink>
-          </CategoryItem>)}
-        </CategoriesNav>
+        <RecipeFragment categories={data.allFile.edges} linkColor="PapayaWhip"/>
         <SidebarSiteNav>
           <h3>Site Navigation</h3>
           <ul>
@@ -37,18 +29,7 @@ export default ({ data, children }) => {
 
 export const query = graphql`
   query NavRecipeCategories{
-    allFile(filter: {
-      relativePath: {
-        glob: "pages/recipes/**/index.js"
-      }
-    }) {
-      totalCount
-      edges {
-        node {
-          relativePath
-        }
-      }
-    }
+    ...RecipeFragment
   }
 
 `
@@ -66,7 +47,9 @@ const Page = styled.div`
 const PageSplit = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: flex-start;
+  height: 100%;
+  overflow-y: scroll;
 `
 const Sidebar = styled(PageSplit)`
   flex-grow: 1;
@@ -93,12 +76,4 @@ const Content = styled(PageSplit)`
 `
 const ContentTitle = styled.h1`
   color: PaleVioletRed;
-`
-
-const CategoriesNav = styled.ul`
-
-`
-
-const CategoryItem = styled.li`
-  color: PapayaWhip;
 `
