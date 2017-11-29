@@ -70,6 +70,12 @@ Documentation on this is really non-existent for Gatsby, the author, Kyle Matthe
 in the repo: <https://github.com/gatsbyjs/gatsby/search?utf8=%E2%9C%93&q=fragment&type=>. This doesn't quite provide
 me with enough information yet, but eventually.
 
+#### 02:32
+
+After hacking around, I arrived at a very workable solution. The fragment is built upon the Root query, so I can
+use the filter option in the allFile fragment in `src/components/recipe_fragment.js`. Pretty cool. The component is being
+used for both the front page and the sidebar nav.
+
 ### 2017-11-21 07:27
 
 Figuring out how to make a full-height, side-by-side layout (typical
