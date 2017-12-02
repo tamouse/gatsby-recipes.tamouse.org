@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Oven Roasted Vegetables"
-date: 2007-03-15 23:30:39 -0500
+date: 2007-03-15
 tags: [vegetables, roasting]
 excerpt: I love oven-roasted vegetables. They bring a distinctive flavour to salads and other dishes, as well as being great as an accompaniment to a main dish.
 ---

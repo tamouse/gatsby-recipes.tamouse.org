@@ -58,6 +58,22 @@ the following packages have been added:
 
 ## Learning Log
 
+### 2017-12-02 15:44
+
+Going deeper, learning how to do things with non-js pages, such as Markdown files.
+
+- `gatsby-node.js` -- implementing a slug for markdown, using the examples in the tutorial docs about
+  ["Programmatically creating pages from data"](https://www.gatsbyjs.org/tutorial/part-four/#programmatically-creating-pages-from-data)
+  by adding some functionality to the `onCreateNode` API.
+
+- the front page is showing Markdown files, just to show something
+
+- some recipe files moved over from the original recipe jekyll site, and a little conversion to make them suitable for gatsby
+  - date format a little squishy
+  - removed liquid stuff and internal links (need to redo the latter)
+  - changed the name to remove the date stamp on the front of the file name
+
+
 ### 2017-11-29 00:37
 
 Using the `gatsby-source-filesystem` plugin, figured out how to filter to just grabbing the recipe categories

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Flourless Pizza"
-date: 2007-03-15 23:49:02 -0500
+date: 2007-03-15
 tags: [flourless, low-carb, gluten-free]
 excerpt: Uses low-fat ricotta cheese as the basis for the crust. Low carb, gluten-free, celiac-compatible.
 ---
