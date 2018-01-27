@@ -3,12 +3,14 @@ export const capitalize = word => {
   return [first.toUpperCase(), ...rest].join("")
 }
 
-export const linkPath = relativePath => {
-  return relativePath.split("/").slice(1,-1).join("/")
+export const linkPath = filePath => {
+  let comps = filePath.split("/").slice(0,-1)
+  comps[0] = null
+  return comps.join("/")
 }
 
-export const linkLabel = relativePath => {
-  return relativePath.split("/")[2]
+export const linkLabel = filePath => {
+  return filePath.split("/")[2]
     .split("-")
     .map(w => capitalize(w))
     .join(" ")
