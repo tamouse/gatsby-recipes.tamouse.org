@@ -5,8 +5,12 @@ export default ({data: {allMarkdownRemark: {edges: nodes}}}) => {
   return (
     <ul>
       {nodes.map(({node}, idx) => {
+        let recipe = {}
+        recipe.url = node.fields.slug
+        recipe.title  = node.frontmatter.title
+        recipe.date = node.frontmatter.date
         return (
-          <RecipeIndexItem recipe={node.frontmatter} key={idx}/>
+          <RecipeIndexItem recipe={recipe} key={idx}/>
         );
       })}
     </ul>
@@ -29,6 +33,9 @@ export const query = graphql`
           } 
           fileAbsolutePath
           excerpt
+          fields {
+            slug
+          }
         }
       }
     }
