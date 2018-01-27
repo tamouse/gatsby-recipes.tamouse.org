@@ -1,13 +1,12 @@
 import React from "react"
+import {RecipeIndexItem} from "../../../components/recipe_index_item";
 
 export default ({data: {allMarkdownRemark: {edges: nodes}}}) => {
   return (
     <ul>
       {nodes.map(({node}, idx) => {
         return (
-          <li key={idx}>
-            {node.frontmatter.title}
-          </li>
+          <RecipeIndexItem recipe={node.frontmatter} key={idx}/>
         );
       })}
     </ul>
@@ -23,7 +22,13 @@ export const query = graphql`
     }) {
       edges {
         node {
-          id frontmatter { title } fileAbsolutePath
+          id 
+          frontmatter { 
+            title 
+            date(formatString: "DD MMMM, YYYY") 
+          } 
+          fileAbsolutePath
+          excerpt
         }
       }
     }

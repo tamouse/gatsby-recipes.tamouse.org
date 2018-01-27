@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "Home Made Pizza Sauce"
-date: 2007-03-15 23:41:39 -0500
-excerpt: A nice recipe for a sugar-free pizza sauce you make yourself! Low-cal, low-carb.
+date: 2007-03-01
 ---
+
+A nice recipe for a sugar-free pizza sauce you make yourself! Low-cal, low-carb.
+
 The following ingredients are to taste. Work to find the right
 amounts for your desires.
 
