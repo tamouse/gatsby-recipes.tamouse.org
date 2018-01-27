@@ -10,8 +10,7 @@ export default ({ categories, linkColor }) => {
     &:hover {
       text-decoration: underline;
     }
-  `
-  console.log(`in src/components/recipe_fragment`, categories, linkColor)
+  `;
   return (
     <ul>
       {categories.map((category, index) => (
@@ -37,4 +36,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

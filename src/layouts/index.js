@@ -16,6 +16,7 @@ export default ({ data, children }) => {
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/about">About</NavLink></li>
             <li><NavLink to="/contact">Contact</NavLink></li>
+            <li><NavLink to="/___graphql" target="_blank">GraphiQL</NavLink></li>
           </ul>
         </SidebarSiteNav>
       </Sidebar>
