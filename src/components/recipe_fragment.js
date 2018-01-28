@@ -26,7 +26,7 @@ export const query = graphql`
   fragment RecipeFragment on RootQueryType {
     allFile(filter: {
       relativePath: {
-        glob: "pages/recipes/**/index.js"
+        glob: "pages/recipes/**/.keep"
       }
     }) {
       edges {
