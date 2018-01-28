@@ -1,11 +1,11 @@
 const path = require(`path`)
-
+const {linkPath} = require(`./src/utils`)
 const {createFilePath} = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({node, getNode, boundActionCreators}) => {
   const {createNodeField} = boundActionCreators
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({node, getNode, basePath: `pages`})
+    const slug = createFilePath({node, getNode, basePath: `pages/recipes`})
     createNodeField({
       node,
       name: `slug`,
@@ -38,7 +38,7 @@ const createCategoryIndexPages = (graphql, createPage) => {
     }}`)
       .then(result => {
         result.data.allFile.edges.forEach(({node}) => {
-          let indexPath = path.join(node.relativePath.split(path.sep).slice(1,-1).join(path.sep), `index.js`)
+          let indexPath = linkPath(node.relativePath)
           let category = path.basename(path.dirname(node.relativePath))
           let glob = `**/recipes/${category}/*.md`
           createPage({
