@@ -24,18 +24,8 @@ exports.createPages = ({graphql, getNode, boundActionCreators}) => {
 
 const createCategoryIndexPages = (graphql, createPage) => {
   return new Promise((resolve, reject) => {
-    graphql(`{
-    allFile(filter: {
-      relativePath: {
-        glob: "pages/recipes/**/.keep"
-      }
-    }) {
-      edges {
-        node {
-          relativePath
-        }
-      }
-    }}`)
+    graphql(`{allFile(filter: {relativePath: {glob: "pages/recipes/**/.keep"}}) 
+    {edges {node {relativePath}}}}`)
       .then(result => {
         result.data.allFile.edges.forEach(({node}) => {
           let indexPath = linkPath(node.relativePath)
@@ -56,32 +46,20 @@ const createCategoryIndexPages = (graphql, createPage) => {
 
 const createMarkdownPages = (graphql, createPage) => {
   return new Promise((resolve, reject) => {
-    graphql(`
-      {
-        allMarkdownRemark {
-          edges {
-            node {
-              fields {
-                slug
-              }
-            }
-          }
-        }
-      }
-    `
-    ).then(result => {
-      result.data.allMarkdownRemark.edges.forEach(({node}) => {
-        createPage({
-          path: node.fields.slug,
-          component: path.resolve(`./src/templates/recipe-template.js`),
-          context: {
-            // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.fields.slug,
-          },
+    graphql(`{allMarkdownRemark {edges {node {fields {slug}}}}}`)
+      .then(result => {
+        result.data.allMarkdownRemark.edges.forEach(({node}) => {
+          createPage({
+            path: node.fields.slug,
+            component: path.resolve(`./src/templates/recipe-template.js`),
+            context: {
+              // Data passed to context is available in page queries as GraphQL variables.
+              slug: node.fields.slug,
+            },
+          })
         })
+        resolve()
       })
-      resolve()
-    })
   })
 }
 
