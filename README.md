@@ -72,6 +72,12 @@ as properties on the `context` option in `createPage`. It took me a while to fin
 See <https://www.gatsbyjs.org/docs/bound-action-creators/#createPage> and read about
 the `context` option.
 
+
+#### generated category index page:
+![generated category index page](assets/showing-pizza-recipe-on-generated-category-index.jpg)
+
+#### generated markdown recipe page:
+![generated markdown recipe page](assets/formatted-markdown-recipe.jpg)
 ### 2017-11-29 00:37
 
 Using the `gatsby-source-filesystem` plugin, figured out how to filter to just grabbing the recipe categories
@@ -83,12 +89,6 @@ Instead I'm repeating the query for the layout sidebar and the home page.
 Documentation on this is really non-existent for Gatsby, the author, Kyle Matthews directed me to a search on fragment
 in the repo: <https://github.com/gatsbyjs/gatsby/search?utf8=%E2%9C%93&q=fragment&type=>. This doesn't quite provide
 me with enough information yet, but eventually.
-
-#### generated category index page:
-![generated category index page](assets/showing-pizza-recipe-on-generated-category-index.jpg)
-
-#### generated markdown recipe page:
-![generated markdown recipe page](assets/formatted-markdown-recipe.jpg)
 
 #### 02:32
 
