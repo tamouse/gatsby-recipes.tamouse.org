@@ -58,6 +58,20 @@ the following packages have been added:
 
 ## Learning Log
 
+### 2018-01-27 23:54
+
+It's been a while, but I jumped back to this. Today, I figured how to have more
+than one set of things happen during the `createPages` callback in `gatsby-node.js` -- 
+essentially you chain the promises together for each thing you want done. Pretty cool.
+
+I'm generating the index pages for each of the recipe categories, as well as generating
+the recipe pages themselves from markdown pages in each category directory.
+
+As for what variables get passed in to a node's query string, they are passed
+as properties on the `context` option in `createPage`. It took me a while to find that.
+See <https://www.gatsbyjs.org/docs/bound-action-creators/#createPage> and read about
+the `context` option.
+
 ### 2017-11-29 00:37
 
 Using the `gatsby-source-filesystem` plugin, figured out how to filter to just grabbing the recipe categories
@@ -69,6 +83,12 @@ Instead I'm repeating the query for the layout sidebar and the home page.
 Documentation on this is really non-existent for Gatsby, the author, Kyle Matthews directed me to a search on fragment
 in the repo: <https://github.com/gatsbyjs/gatsby/search?utf8=%E2%9C%93&q=fragment&type=>. This doesn't quite provide
 me with enough information yet, but eventually.
+
+#### generated category index page:
+![generated category index page](assets/showing-pizza-recipe-on-generated-category-index.jpg)
+
+#### generated markdown recipe page:
+![generated markdown recipe page](assets/formatted-markdown-recipe.jpg)
 
 #### 02:32
 
