@@ -1,11 +1,11 @@
 const path = require(`path`)
 
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const {createFilePath} = require(`gatsby-source-filesystem`)
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators
+exports.onCreateNode = ({node, getNode, boundActionCreators}) => {
+  const {createNodeField} = boundActionCreators
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, basePath: `pages` })
+    const slug = createFilePath({node, getNode, basePath: `pages`})
     createNodeField({
       node,
       name: `slug`,
@@ -14,9 +14,47 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 }
 
+exports.createPages = ({graphql, getNode, boundActionCreators}) => {
+  const {createPage} = boundActionCreators
+  return createMarkdownPages(graphql, createPage)
+    .then(() => {
+      return createCategoryIndexPages(graphql, createPage)
+    })
+}
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+const createCategoryIndexPages = (graphql, createPage) => {
+  return new Promise((resolve, reject) => {
+    graphql(`{
+    allFile(filter: {
+      relativePath: {
+        glob: "pages/recipes/**/.keep"
+      }
+    }) {
+      edges {
+        node {
+          relativePath
+        }
+      }
+    }}`)
+      .then(result => {
+        result.data.allFile.edges.forEach(({node}) => {
+          let indexPath = path.join(node.relativePath.split(path.sep).slice(1,-1).join(path.sep), `index.js`)
+          let category = path.basename(path.dirname(node.relativePath))
+          let glob = `**/recipes/${category}/*.md`
+          createPage({
+            path: indexPath,
+            component: path.resolve(`./src/templates/category-index-template.js`),
+            context: {
+              glob
+            }
+          })
+        })
+        resolve()
+      })
+  })
+}
+
+const createMarkdownPages = (graphql, createPage) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
@@ -32,7 +70,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
     `
     ).then(result => {
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      result.data.allMarkdownRemark.edges.forEach(({node}) => {
         createPage({
           path: node.fields.slug,
           component: path.resolve(`./src/templates/recipe-template.js`),
@@ -46,3 +84,4 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     })
   })
 }
+
