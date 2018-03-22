@@ -13,9 +13,9 @@ export default ({ data }) => {
           <div key={node.id}>
             <h3>
               {node.frontmatter.title}{" "}
-              <span style={{color: "#ccc"}}>— {node.frontmatter.date}</span>
+              <span style={{ color: "#ccc" }}>— {node.frontmatter.date}</span>
             </h3>
-            <p>{node.excerpt}</p>
+            <p>{node.frontmatter.excerpt}</p>
           </div>
         ))}
       </div>
@@ -26,11 +26,7 @@ export default ({ data }) => {
 export const query = graphql`
   query AllMarkdownRecipes {
     allMarkdownRemark(
-      filter: {
-        fileAbsolutePath: {
-          glob: "**/recipes/**/*.md"
-        }
-      }
+      filter: { fileAbsolutePath: { glob: "**/recipes/**/*.md" } }
     ) {
       totalCount
       edges {
@@ -45,4 +41,5 @@ export const query = graphql`
         }
       }
     }
-  }`
+  }
+`
